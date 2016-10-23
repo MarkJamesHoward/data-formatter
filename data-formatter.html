@@ -24,10 +24,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
 
-    <textarea name="Text1" cols="40" rows="5"></textarea>
+    <textarea onClick="PerformFormat()" id="dataToFormat" cols="40" rows="5"></textarea>
 
-    <h1>TEST</h1>
-
+    <button>Format!</button>
 
   </template>
 
@@ -41,6 +40,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       static get config() {
         // properties, observers meta data
         return {};
+      }
+
+      PerformFormat() {
+        //get the text in the textarea box
+        let  tb = document.getElementById('dataToFormat');
+        if (tb != null)
+        {
+          alert(tb.value);
+        }
       }
 
       connectedCallback() {

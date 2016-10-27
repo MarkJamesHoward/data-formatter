@@ -9,7 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <!-- Load the Polymer.Element base class -->
-<link rel="import" href="./bower_components/polymer/polymer-element.html">
+<link rel="import" href="./bower_components/polymer/polymer-element.html" />
 
 <dom-module id="data-formatter">
   <template>
@@ -19,14 +19,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       :host {
         display: block;
+        height: 100%;
+      }
+
+      #container {
+        display: flex;
+        flex-direction: row;
+        margin: 50px;
+        height: 300px;
+        border-style: border-box;
+      }
+
+      #dataToFormat {
+        height: 100%;
+        width: 100%;
+        resize:none;
       }
 
     </style>
 
-
-    <textarea onClick="PerformFormat()" id="dataToFormat" cols="40" rows="5"></textarea>
-
-    <button>Format!</button>
+    <div id="container">
+      <textarea style="flex:1"  id="dataToFormat" ></textarea>
+      <textarea style="flex:1"  id="dataFormatted" ></textarea>
+    </div>
+    <button on-click="PerformFormat">Format!</button>
 
   </template>
 
@@ -39,17 +55,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       static get config() {
         // properties, observers meta data
-        return {};
+        return {
+          properties: {
+            valuesToFormat: {
+              type: Array,
+              observer: '_selectedChanged' 
+            }
+          }
+        };
+      }
+
+      _selectedChanged() {
       }
 
       PerformFormat() {
-        //get the text in the textarea box
-        let  tb = document.getElementById('dataToFormat');
-        if (tb != null)
-        {
-          alert(tb.value);
+        let output = [];
+        let index = 0;
+
+        this.valuesToFormat = this.$.dataToFormat.value.split('\n');
+        console.dir(this.valuesToFormat);
+
+        for ( let name of this.valuesToFormat ) {
+          output[index] = "'" + name + "',";
+          this.$.dataFormatted.value += output[index++] + '\n';
         }
+        this.$.dataFormatted.select();
+        // Copy to the clipboard
+        document.execCommand('copy');
       }
+      
 
       connectedCallback() {
         super.connectedCallback();

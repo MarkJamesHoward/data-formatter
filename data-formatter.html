@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <!-- Load the Polymer.Element base class -->
 <link rel="import" href="./bower_components/polymer/polymer-element.html" />
+<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css" />
 
 <dom-module id="data-formatter">
   <template>
@@ -23,26 +24,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       #container {
-        display: flex;
-        flex-direction: row;
-        margin: 50px;
-        height: 300px;
-        border-style: border-box;
+        display: grid;
+        grid-template-columns: 10% 33% 33% 10%;
+        grid-gap: 10px;
+        grid-template-rows: 10px 200px 200px 200px;
+        border: 4px solid red;
+      
+      }
+
+     #formatBtnContainer {
+        grid-area: 3/3/3/3;
+        width: 100%;
+        height: 80px;
+        border: 3px solid blue;
       }
 
       #dataToFormat {
-        height: 100%;
-        width: 100%;
-        resize:none;
+       grid-area: 2/2/3/3;
+      }
+
+      #dataFormatted {
+       grid-area: 2/3/3/4;
       }
 
     </style>
 
     <div id="container">
-      <textarea style="flex:1"  id="dataToFormat" ></textarea>
-      <textarea style="flex:1"  id="dataFormatted" ></textarea>
+      <textarea  id="dataToFormat" ></textarea>
+      <textarea  id="dataFormatted" ></textarea>
+      <div id="formatBtnContainer">
+        <button id="formatBtn" on-click="PerformFormat">Format!</button>
+        <button id="copyToClipboard" on-click="copyToClipboard">Copy to Clipboard</button>
+      </div>
     </div>
-    <button on-click="PerformFormat">Format!</button>
 
   </template>
 

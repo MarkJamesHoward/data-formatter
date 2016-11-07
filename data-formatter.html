@@ -43,17 +43,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       @media screen and (max-width: 800px) {
       
         #dataToFormatContainer {
-          grid-row: 2;
+          grid-row: 1;
           grid-column:2/4;
       }
 
       #dataFormattedContainer {
-       grid-row: 3;
+       grid-row: 2;
        grid-column: 2/4;
       }
 
        #formatBtnContainer {
-        grid-row: 4;
+        grid-row: 3;
         grid-column: 2/4;
         width: 100%;
         height: 80px;
@@ -65,35 +65,57 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: grid;
         grid-template-columns: 10% 33% 33% 10%;
         grid-gap: 10px;
-        grid-template-rows: 10px 200px 200px 10px;
-
+        grid-template-rows: 200px 200px 200px 200px;
+        grid-gap:20px;
       
       }
 
+      .box {
+        border-radius: 10px;
+        background-color: #e0e0e0;
+      }
 
       textarea {
-        width:100%;
-        height:100%;
+        width:90%;
         box-sizing: border-box;
         resize: none;
+        margin-left:10px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        font-size: 20px;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+      }
+
+      h3 {
+        margin-left: 10px;
+      }
+
+      .flex1 {
+        display:flex;
+        flex-direction:column;
+        height:100%;
       }
   
     </style>
 
-    <div id="container">
-      <div id="dataToFormatContainer">
-        <!--<h3>Enter text to be formatted here</h3>-->
-         <textarea id="dataToFormat"></textarea>
-      </div>
-     <div id="dataFormattedContainer">
-        <!--<h3>Formatted text will appear here</h3>-->
-        <textarea id="dataFormatted"></textarea>
-     </div>
-      <div id="formatBtnContainer">
-        <button id="formatBtn" on-click="PerformFormat">Format!</button>
-        <button id="copyToClipboard" on-click="copyToClipboard">Copy to Clipboard</button>
-      </div>
+<div id="container">
+  <div id="dataToFormatContainer" class="box">
+    <div class="flex1">
+      <h3>Enter text to be formatted here</h3>
+      <textarea style="flex-grow:1" id="dataToFormat"></textarea>
     </div>
+  </div>
+  <div id="dataFormattedContainer" class="box">
+    <div class="flex1">
+      <h3>Formatted text will appear here</h3>
+      <textarea style="flex-grow:1" id="dataFormatted"></textarea>
+    </div>
+  </div>
+  <div id="formatBtnContainer">
+    <button id="formatBtn" on-click="PerformFormat">Format!</button>
+    <button id="copyToClipboard" on-click="copyToClipboard">Copy to Clipboard</button>
+  </div>
+</div>
 
   </template>
 

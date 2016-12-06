@@ -1,6 +1,6 @@
 {
   "name": "data-formatter",
-  "private": true,
+  "private": false,
   "dependencies": {
     "polymer": "Polymer/polymer#2.0-preview"
   }
